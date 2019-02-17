@@ -1,0 +1,19 @@
+Html, body{
+	height:100%;
+    margin:0px;
+    padding:0px;
+}
+.parent{
+        display:table;
+        height:100%;
+        margin: 0 auto;
+}
+.container{
+    display:table-cell;
+    vertical-align:middle;  
+}
+.container #input{
+    background:#ddd;
+    border:1px solid #eee;
+    padding:10px; 
+}

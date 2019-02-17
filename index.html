@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="parent">
+    <div class="container">
+      <div id="input">
+          <input type="text" id="box"><br>
+          <button onclick="encode()">Encode</button>
+          <button onclick="decode()">Decode</button> 
+          <span id="demo"></span>     
+      </div>
+    </div>
+</div>
+
+<script>
+  encode = () => {
+    var str = document.getElementById("box").value;
+    var res = new Array();
+    res = str.split("");
+    var text = "";
+    var filter = new Array("r","j");
+    var totalmatch = 0;
+
+    for ( var i = 0; i < res.length; i++ ) {
+      for ( var j = 0; j < filter.length; j++ ) {
+        if (res[i] == filter[j]) {
+          totalmatch ++;
+        }
+      }  
+    }
+
+    if ( totalmatch > 1 ) {
+      for ( x = 0; x < res.length; x++ ) {
+        if ("aiueo".indexOf(res[x]) !== -1) {
+          res[x] = res[x].toUpperCase();
+        } else if ( res[x] === "r") {
+          res[x] = "j";
+        } else if ( res[x] === "j") {
+          res[x] = "r";
+        }else{
+          res[x] = `${x}#`;
+        }
+          text += res[x];
+      }
+    } else if ( totalmatch < 2) {
+        for ( x = 0; x < res.length; x++) {
+          if ("aiueo".indexOf(res[x]) !== -1 ) {
+          res[x] = res[x].toUpperCase();
+          } else if (res[x] === "r") {
+            res[x] = "r";
+          } else if (res[x] === "j") {
+            res[x] = "j";
+          } else {
+            res[x] = `${x}#`;
+          }
+            text += res[x];
+        }
+    }
+    
+    document.getElementById("demo").innerHTML = text;
+  }
+
+  decode = () => {
+    var str = document.getElementById("box").value;
+    var res = new Array();
+    res = str.split("");
+    var text = "";
+    var filter = new Array("r","j");
+    var totalmatch = 0;
+  
+    for ( var i = 0; i < res.length; i++ ) {
+      for ( var j = 0; j < filter.length; j++ ) {
+        if (res[i] == filter[j]) {
+          totalmatch ++;
+        }
+      }  
+    }
+  
+    if ( totalmatch > 1 ) {
+      for ( x = 0; x < res.length; x++ ) {
+        if ("AIUEO".indexOf(res[x]) !== -1) {
+          res[x] = res[x].toLowerCase();
+        } else if ( res[x] === "r") {
+          res[x] = "j";
+        } else if ( res[x] === "j") {
+          res[x] = "r";
+        }else{
+          res[x] = `${x}#`;
+        }
+          text += res[x];
+      }
+    } else if ( totalmatch < 2) {
+        for ( x = 0; x < res.length; x++) {
+          if ("AIUEO".indexOf(res[x]) !== -1) {
+          res[x] = res[x].toLowerCase();
+          } else if (res[x] === "r") {
+            res[x] = "r";
+          } else if (res[x] === "j") {
+            res[x] = "j";
+          } else {
+            var char = "bcdfghklmnpqrstvwxyz";
+            res[x] = char.charAt(Math.floor(Math.random() * char.length));
+          }
+            text += res[x];
+        }
+    }
+    document.getElementById("demo").innerHTML = text;
+  }
+</script>
+
+</body>
+</html>
